@@ -1,0 +1,8 @@
+2026-10-05 initial repository foundation verification
+24 unittest regression tests passed.
+Live Python/Node integration passed: Allow 200, Block 403, Review 409; denied inputs did not reach the handler; invalid input 422; monitor mode permitted a Block recommendation; authenticated acknowledgement retries were idempotent; scanner outage denied with 503.
+JavaScript syntax checks passed for workspace and protected adapter.
+Model integrity and loading checks passed for both compressed bundled artifacts.
+These checks verify behavior, not detection accuracy.
+Windows launchers were reviewed but not executed on Windows. Browser visual verification could not run: no installed browser executable and the browser download was unavailable.
+Reproduce: python -m unittest discover -s tests -v; python scripts/check_integration.py
