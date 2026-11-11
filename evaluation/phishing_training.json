@@ -1,0 +1,75 @@
+{
+  "dataset_sha256": "a236549cd369cd80bd478ff8e1779cbf44c58d5c3f79f7a51a1adbed7d06d1c6",
+  "source": "PhiUSIIL UCI 967; supplied CSV",
+  "split": "registered domain groups; 70/15/15; seed 42/43; sampled per class after split",
+  "full_split_rows": {
+    "train": 164785,
+    "validation": 35385,
+    "test": 35200
+  },
+  "training_original_rows": 40000,
+  "training_synthetic_rows": 20000,
+  "calibration_original_rows": 6000,
+  "calibration_synthetic_rows": 3000,
+  "features": [
+    "host_length",
+    "host_digits",
+    "host_hyphens",
+    "host_entropy",
+    "subdomain_count",
+    "ip_host",
+    "punycode",
+    "shortener",
+    "https",
+    "host_keywords",
+    "path_length",
+    "path_depth",
+    "query_length",
+    "query_parameters",
+    "encoded_chars",
+    "url_digits",
+    "at_sign",
+    "path_keywords"
+  ],
+  "heldout_original": {
+    "rows": 8000,
+    "accuracy": 0.98625,
+    "precision": 0.9966802860061287,
+    "recall": 0.97575,
+    "f1": 0.9861040929762507,
+    "brier": 0.010913626329380774,
+    "confusion_matrix": [
+      [
+        3987,
+        13
+      ],
+      [
+        97,
+        3903
+      ]
+    ]
+  },
+  "heldout_with_synthetic_benign_variants": {
+    "rows": 12000,
+    "accuracy": 0.9895,
+    "precision": 0.9926246185147508,
+    "recall": 0.97575,
+    "f1": 0.9841149773071104,
+    "brier": 0.008488258729808807,
+    "confusion_matrix": [
+      [
+        7971,
+        29
+      ],
+      [
+        97,
+        3903
+      ]
+    ]
+  },
+  "limitations": [
+    "Single source dataset; no independent real-world validation",
+    "Generated benign subpaths are assumed benign, not verified pages",
+    "Probabilities calibrated on source-plus-synthetic validation, not deployment traffic"
+  ]
+}

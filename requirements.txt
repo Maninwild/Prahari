@@ -8,3 +8,4 @@ scipy==1.17.0
 pandas==2.2.3
 joblib==1.5.3
 httpx==0.28.1
+tldextract==5.3.2

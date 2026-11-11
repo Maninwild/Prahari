@@ -1,19 +1,18 @@
 {
   "request": {
     "file": "request_baseline.pkl",
-    "sha256": "84cacee87463b8165e2fccc3ba4cbb99d1e2b6b34573f5fce095e1251d8aa2c3",
+    "sha256": "496c69d18e7d1e37418e97551842b4006e7ab797b3b1d65e776b8e18ec02a152",
     "version": "request-experimental-0.1",
     "calibrated": false,
-    "block_eligible": false,
-    "original_artifact_sha256": "496c69d18e7d1e37418e97551842b4006e7ab797b3b1d65e776b8e18ec02a152"
+    "block_eligible": false
   },
   "phishing": {
-    "file": "phishing_baseline.pkl",
-    "sha256": "79252b7b3e3b83dc2eb90626cc82d526794b1c7116c23e0c35a57fb7f68087b7",
-    "version": "phishing-experimental-0.1",
-    "calibrated": false,
+    "file": "phishing_v2.pkl",
+    "sha256": "9d7158061ae669509f5f75d66f1ad38c13e4a8b0eed63a5ebcd5bc6b53598a3c",
+    "version": "phishing-v2-domain-split",
+    "calibrated": true,
     "block_eligible": false,
-    "original_artifact_sha256": "5418c6072f6e49794b1b4912fc976c1ded070788e7b3736d26086fcacd4ef6c2"
+    "feature_schema": "v2"
   },
   "environment": {
     "scikit-learn": "1.8.0",
@@ -22,6 +21,5 @@
     "joblib": "1.5.3"
   },
   "request_training_rows": 100,
-  "training_source_sha256": "84a5f641f4a5cfcfbda540354566a44e44dcc326deb6c119c7f2e6e3d32f4abc",
-  "source": "Recovered Prahari_Milestone_3.zip from the existing project artifact; compressed serialization without retraining."
+  "training_source_sha256": "84a5f641f4a5cfcfbda540354566a44e44dcc326deb6c119c7f2e6e3d32f4abc"
 }
