@@ -1,0 +1,37 @@
+{
+  "version": "behaviour-synthetic-0.1",
+  "scope": "synthetic demonstration baseline; not production validated",
+  "algorithm": "IsolationForest",
+  "seed": 20261005,
+  "features": {
+    "http": [
+      "count",
+      "unique_routes",
+      "auth_failures",
+      "error_ratio",
+      "attack_scans",
+      "bytes_out"
+    ],
+    "flow": [
+      "count",
+      "unique_destinations",
+      "unique_ports",
+      "failure_ratio",
+      "bytes_out",
+      "out_in_ratio"
+    ]
+  },
+  "calibration": {
+    "http": {
+      "training_windows": 1200,
+      "calibration_windows": 400,
+      "cutoff": 0.6225015747876748
+    },
+    "flow": {
+      "training_windows": 1200,
+      "calibration_windows": 400,
+      "cutoff": 0.5979826216946363
+    }
+  },
+  "sha256": "23d0bf6621d59732050c28a9db15562048e2eb6c34318b4727536cebd3109bab"
+}

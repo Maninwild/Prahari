@@ -1,0 +1,30 @@
+services:
+  prahari:
+    build: .
+    ports: ["127.0.0.1:8000:8000"]
+    volumes: ["prahari-data:/app/data"]
+    environment:
+      PRAHARI_API_KEY: ${PRAHARI_API_KEY:?Set a private workspace key}
+      PRAHARI_INTEGRATION_KEY: ${PRAHARI_INTEGRATION_KEY:?Set a separate integration key}
+      PRAHARI_ALLOWED_HOSTS: localhost,127.0.0.1,prahari
+      PRAHARI_POLICY: demo-strict
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/ready')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  board:
+    build: ./demo-app
+    ports: ["127.0.0.1:3000:3000"]
+    volumes: ["board-data:/app/data"]
+    environment:
+      PRAHARI_URL: http://prahari:8000
+      PRAHARI_INTEGRATION_KEY: ${PRAHARI_INTEGRATION_KEY}
+      PRAHARI_PSEUDONYM_KEY: ${PRAHARI_PSEUDONYM_KEY:?Set a stable pseudonym key}
+      DEMO_BIND: 0.0.0.0
+    depends_on:
+      prahari:
+        condition: service_healthy
+volumes:
+  prahari-data:
+  board-data:
