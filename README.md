@@ -116,4 +116,4 @@ Set `PRAHARI_API_KEY`, `PRAHARI_INTEGRATION_KEY` and `PRAHARI_PSEUDONYM_KEY` to 
 
 `submission/` retains the v1 ten-slide deck, captioned demo video, narration script and project description. The new SecureNet concept-note draft and incident screenshot cover the upgrade. `docs/` covers architecture, evaluation, security and repository publishing. GitHub Actions checks are included. Repository: https://github.com/Maninwild/Prahari. The SecureNet v2 release is available on the securenet-v2 branch for review alongside the existing main branch. No competition submission is claimed.
 
-Original projects were created by Manjunath Padgetwar and his collaborator. The collaborator's name was not provided. Dataset attribution appears in `NOTICE.md`; do not attribute all source data to the project team.
+Original projects were created by Manjunath Padgetwar and K S Krithic. Dataset attribution appears in `NOTICE.md`; do not attribute all source data to the project team.
