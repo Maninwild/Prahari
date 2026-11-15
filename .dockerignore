@@ -1,0 +1,8 @@
+.venv
+.git
+data
+__pycache__
+**/__pycache__
+submission
+inspection
+*.zip

@@ -1,0 +1,290 @@
+{
+  "scope": "26 authored diagnostic cases, not an independent real-traffic benchmark. Includes known and template-similar regressions; labels express intended context.",
+  "python": "3.12.14",
+  "rows": [
+    {
+      "text": "GET /products?page=2 HTTP/1.1",
+      "label": "Normal",
+      "source": "training-overlap regression",
+      "ml_prediction": "Normal",
+      "rule_categories": [],
+      "hybrid_decision": "Allow",
+      "analysis_ms": 1.42
+    },
+    {
+      "text": "Welcome to our community discussion",
+      "label": "Normal",
+      "source": "authored holdout",
+      "ml_prediction": "Normal",
+      "rule_categories": [],
+      "hybrid_decision": "Review",
+      "analysis_ms": 0.68
+    },
+    {
+      "text": "POST /feedback message=Excellent delivery thank you",
+      "label": "Normal",
+      "source": "authored holdout",
+      "ml_prediction": "Normal",
+      "rule_categories": [],
+      "hybrid_decision": "Allow",
+      "analysis_ms": 0.61
+    },
+    {
+      "text": "GET /shop?category=stationery&sort=latest HTTP/1.1",
+      "label": "Normal",
+      "source": "authored holdout",
+      "ml_prediction": "Normal",
+      "rule_categories": [],
+      "hybrid_decision": "Review",
+      "analysis_ms": 0.54
+    },
+    {
+      "text": "GET /help?topic=account-security HTTP/1.1",
+      "label": "Normal",
+      "source": "authored holdout",
+      "ml_prediction": "Normal",
+      "rule_categories": [],
+      "hybrid_decision": "Review",
+      "analysis_ms": 0.5
+    },
+    {
+      "text": "name=O'Connor&city=London",
+      "label": "Normal",
+      "source": "authored holdout",
+      "ml_prediction": "Normal",
+      "rule_categories": [],
+      "hybrid_decision": "Review",
+      "analysis_ms": 0.42
+    },
+    {
+      "text": "GET /article/git--workflow HTTP/1.1",
+      "label": "Normal",
+      "source": "authored holdout",
+      "ml_prediction": "Normal",
+      "rule_categories": [],
+      "hybrid_decision": "Allow",
+      "analysis_ms": 0.44
+    },
+    {
+      "text": "Learn how UNION SELECT works in SQL",
+      "label": "Normal",
+      "source": "benign code discussion",
+      "ml_prediction": "SQL Injection",
+      "rule_categories": [
+        "sqli"
+      ],
+      "hybrid_decision": "Review",
+      "analysis_ms": 0.42
+    },
+    {
+      "text": "Documentation example: <script>console.log('hi')</script>",
+      "label": "Normal",
+      "source": "benign code discussion",
+      "ml_prediction": "Cross-Site Scripting",
+      "rule_categories": [
+        "xss"
+      ],
+      "hybrid_decision": "Block",
+      "analysis_ms": 0.52
+    },
+    {
+      "text": "file=../shared/readme.md",
+      "label": "Normal",
+      "source": "context-dependent benign relative path",
+      "ml_prediction": "Path Traversal",
+      "rule_categories": [
+        "path_traversal"
+      ],
+      "hybrid_decision": "Block",
+      "analysis_ms": 0.41
+    },
+    {
+      "text": "name=' OR 'z'='z'--",
+      "label": "SQL Injection",
+      "source": "authored holdout",
+      "ml_prediction": "SQL Injection",
+      "rule_categories": [
+        "sqli"
+      ],
+      "hybrid_decision": "Block",
+      "analysis_ms": 0.38
+    },
+    {
+      "text": "id=5 UNION SELECT email,hash FROM members",
+      "label": "SQL Injection",
+      "source": "authored holdout",
+      "ml_prediction": "SQL Injection",
+      "rule_categories": [
+        "sqli"
+      ],
+      "hybrid_decision": "Review",
+      "analysis_ms": 0.45
+    },
+    {
+      "text": "id=3; DROP TABLE sessions;--",
+      "label": "SQL Injection",
+      "source": "authored holdout",
+      "ml_prediction": "SQL Injection",
+      "rule_categories": [
+        "sqli"
+      ],
+      "hybrid_decision": "Block",
+      "analysis_ms": 0.38
+    },
+    {
+      "text": "q=1 AND SLEEP(7)",
+      "label": "SQL Injection",
+      "source": "authored holdout",
+      "ml_prediction": "SQL Injection",
+      "rule_categories": [
+        "sqli"
+      ],
+      "hybrid_decision": "Review",
+      "analysis_ms": 0.4
+    },
+    {
+      "text": "<script>confirm(23)</script>",
+      "label": "Cross-Site Scripting",
+      "source": "authored holdout",
+      "ml_prediction": "Cross-Site Scripting",
+      "rule_categories": [
+        "xss"
+      ],
+      "hybrid_decision": "Block",
+      "analysis_ms": 0.72
+    },
+    {
+      "text": "<img src=bad onerror=confirm(23)>",
+      "label": "Cross-Site Scripting",
+      "source": "authored holdout",
+      "ml_prediction": "Cross-Site Scripting",
+      "rule_categories": [
+        "xss"
+      ],
+      "hybrid_decision": "Review",
+      "analysis_ms": 0.47
+    },
+    {
+      "text": "javascript:confirm(document.domain)",
+      "label": "Cross-Site Scripting",
+      "source": "authored holdout",
+      "ml_prediction": "Cross-Site Scripting",
+      "rule_categories": [
+        "xss"
+      ],
+      "hybrid_decision": "Review",
+      "analysis_ms": 0.47
+    },
+    {
+      "text": "<svg onload=confirm(23)>",
+      "label": "Cross-Site Scripting",
+      "source": "authored holdout",
+      "ml_prediction": "Cross-Site Scripting",
+      "rule_categories": [
+        "xss"
+      ],
+      "hybrid_decision": "Review",
+      "analysis_ms": 0.43
+    },
+    {
+      "text": "server=localhost; whoami",
+      "label": "Command Injection",
+      "source": "authored holdout",
+      "ml_prediction": "Command Injection",
+      "rule_categories": [
+        "command_injection"
+      ],
+      "hybrid_decision": "Block",
+      "analysis_ms": 0.38
+    },
+    {
+      "text": "target=$(uname -a)",
+      "label": "Command Injection",
+      "source": "authored holdout",
+      "ml_prediction": "Command Injection",
+      "rule_categories": [
+        "command_injection"
+      ],
+      "hybrid_decision": "Block",
+      "analysis_ms": 0.4
+    },
+    {
+      "text": "name=test | cat /etc/hosts",
+      "label": "Command Injection",
+      "source": "authored holdout",
+      "ml_prediction": "Command Injection",
+      "rule_categories": [
+        "command_injection"
+      ],
+      "hybrid_decision": "Block",
+      "analysis_ms": 0.5
+    },
+    {
+      "text": "host=localhost && id",
+      "label": "Command Injection",
+      "source": "training-like regression",
+      "ml_prediction": "Command Injection",
+      "rule_categories": [
+        "command_injection"
+      ],
+      "hybrid_decision": "Block",
+      "analysis_ms": 0.44
+    },
+    {
+      "text": "file=../../../private/credentials.json",
+      "label": "Path Traversal",
+      "source": "authored holdout",
+      "ml_prediction": "Path Traversal",
+      "rule_categories": [
+        "path_traversal"
+      ],
+      "hybrid_decision": "Block",
+      "analysis_ms": 0.5
+    },
+    {
+      "text": "file=..\\..\\windows\\system.ini",
+      "label": "Path Traversal",
+      "source": "authored holdout",
+      "ml_prediction": "Path Traversal",
+      "rule_categories": [
+        "path_traversal"
+      ],
+      "hybrid_decision": "Block",
+      "analysis_ms": 0.48
+    },
+    {
+      "text": "path=/etc/shadow",
+      "label": "Path Traversal",
+      "source": "authored holdout",
+      "ml_prediction": "Path Traversal",
+      "rule_categories": [
+        "path_traversal"
+      ],
+      "hybrid_decision": "Review",
+      "analysis_ms": 0.38
+    },
+    {
+      "text": "doc=../../backup/users.csv",
+      "label": "Path Traversal",
+      "source": "authored holdout",
+      "ml_prediction": "Path Traversal",
+      "rule_categories": [
+        "path_traversal"
+      ],
+      "hybrid_decision": "Block",
+      "analysis_ms": 0.43
+    }
+  ],
+  "summary": {
+    "cases": 26,
+    "benign": 10,
+    "attack": 16,
+    "ml_correct_class": 23,
+    "rules_attack_family_hits": 16,
+    "rules_benign_flags": 3,
+    "hybrid_attacks_not_allowed": 16,
+    "hybrid_benign_blocks": 2,
+    "hybrid_benign_reviews": 5,
+    "median_analysis_ms": 0.445
+  }
+}
