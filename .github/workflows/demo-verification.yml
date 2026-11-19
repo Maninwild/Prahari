@@ -1,0 +1,69 @@
+name: Local demo verification
+on: [pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  demo:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Start Windows launcher
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          python -m venv .venv
+          Start-Process cmd.exe -ArgumentList '/c run_protected_demo.bat' -WindowStyle Hidden -RedirectStandardOutput launcher.log -RedirectStandardError launcher.err
+      - name: Start Compose
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          export PRAHARI_API_KEY=$(openssl rand -hex 32)
+          export PRAHARI_INTEGRATION_KEY=$(openssl rand -hex 32)
+          export PRAHARI_PSEUDONYM_KEY=$(openssl rand -hex 32)
+          echo "::add-mask::$PRAHARI_API_KEY"
+          echo "PRAHARI_API_KEY=$PRAHARI_API_KEY" >> "$GITHUB_ENV"
+          docker compose up --build --wait --wait-timeout 120
+      - name: Verify board to incident pipeline
+        shell: pwsh
+        run: |
+          $board = 'http://127.0.0.1:3000'
+          $api = 'http://127.0.0.1:8000'
+          $deadline = (Get-Date).AddMinutes(8)
+          do {
+            try {
+              Invoke-RestMethod "$api/ready" | Out-Null
+              Invoke-RestMethod "$board/stats" | Out-Null
+              break
+            } catch {
+              if ((Get-Date) -ge $deadline) { throw }
+              Start-Sleep 2
+            }
+          } while ($true)
+          $session = [Microsoft.PowerShell.Commands.WebRequestSession]::new()
+          foreach ($i in 1..5) {
+            $reply = Invoke-WebRequest "$board/login" -Method Post -WebSession $session -SkipHttpErrorCheck
+            if ($reply.StatusCode -ne 401) { throw "Unexpected login response $($reply.StatusCode)" }
+          }
+          $headers = @{}
+          if ($env:PRAHARI_API_KEY) { $headers.Authorization = "Bearer $env:PRAHARI_API_KEY" }
+          foreach ($attempt in 1..30) {
+            $list = Invoke-RestMethod "$api/api/v1/incidents?mode=live" -Headers $headers
+            if ($list.items | Where-Object title -eq 'Repeated authentication failures') { exit 0 }
+            Start-Sleep 1
+          }
+          throw 'The board received five failed logins but the expected incident was missing.'
+      - name: Windows startup diagnostics
+        if: failure() && runner.os == 'Windows'
+        shell: pwsh
+        run: Get-Content launcher.log,launcher.err -ErrorAction SilentlyContinue
