@@ -59,7 +59,7 @@ jobs:
           if ($env:PRAHARI_API_KEY) { $headers.Authorization = "Bearer $env:PRAHARI_API_KEY" }
           foreach ($attempt in 1..30) {
             $list = Invoke-RestMethod "$api/api/v1/incidents?mode=live" -Headers $headers
-            if ($list.items | Where-Object title -eq 'Repeated authentication failures') { exit 0 }
+            if ($list.items.signals.id -contains 'auth-failures') { exit 0 }
             Start-Sleep 1
           }
           throw 'The board received five failed logins but the expected incident was missing.'
