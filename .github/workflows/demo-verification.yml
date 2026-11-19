@@ -23,7 +23,9 @@ jobs:
         shell: pwsh
         run: |
           python -m venv .venv
-          Start-Process cmd.exe -ArgumentList '/c run_protected_demo.bat' -WindowStyle Hidden -RedirectStandardOutput launcher.log -RedirectStandardError launcher.err
+          & .\.venv\Scripts\python.exe -m pip install -r requirements.txt
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          Start-Process cmd.exe -ArgumentList '/d /c run_protected_demo.bat >launcher.log 2>launcher.err' -WindowStyle Hidden
       - name: Start Compose
         if: runner.os == 'Linux'
         shell: bash
